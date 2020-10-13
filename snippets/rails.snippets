@@ -501,3 +501,13 @@ snippet isresw
 	it { should respond_to(:${1}).with(${0}).arguments }
 snippet super_call
 	${1:super_class}.instance_method(:${0:method}).bind(self).call
+
+# migration
+snippet fkey
+	execute <<-SQL
+	  alter table ${1:table_name}
+	  add constraint fk_${2:key_name}
+	  foreign key (${3:key_col})
+	  references ${4:ref_table}(${5:ref_column})
+	  on delete cascade
+	SQL
